@@ -1,0 +1,12 @@
+/* Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global Styles */
+html, body {
+  margin: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+  cursor: pointer;
+}
