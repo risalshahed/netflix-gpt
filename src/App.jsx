@@ -1,10 +1,13 @@
 import './App.css'
+import Header from './components/Global/Header';
+import Home from './components/Home'
 
 function App() {
 
   return (
-    <div className='text-3xl font-bold text-red-600'>
-      Netflix GPT
+    <div>
+      <Header />
+      <Home />
     </div>
   )
 }
