@@ -3,6 +3,7 @@ import Login from './Auth/Login'
 import Browse from './Browse'
 
 export default function Home() {
+  // *********** Routing of the App/ Project ***********
   const appRouter = createBrowserRouter([
     {
       path: '/',

@@ -2,6 +2,15 @@
 - Create App with vite
 - Add Global Styles
 - Configure Tailwind CSS
+- Routing
+- Login & Sign up Form
+- Form Validation
+- useRef
+- Firebase setup
+- Deploy app to production
+- Create signup user account
+- Implement sign in user api
+- Created redux store with userSlice
 
 ## Features
 - Login/ Sign up Page
