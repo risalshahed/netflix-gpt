@@ -11,6 +11,8 @@
 - Create signup user account
 - Implement sign in user api
 - Created redux store with userSlice
+- Sign out Implemented
+- Update our profile
 
 ## Features
 - Login/ Sign up Page

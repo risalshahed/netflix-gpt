@@ -1,8 +1,12 @@
 import { useRef, useState } from 'react'
 import background from '../../assets/background.jpg'
 import chackValidData from '../../utils/validate'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from '../../utils/firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { auth } from '../../utils/firebase'
+import { useNavigate } from 'react-router-dom'
+import Header from '../Global/Header'
+import { useDispatch } from 'react-redux'
+import { addUser } from '../../utils/userSlice'
 
 /* ------------------------------------------------------------
             DEPLOY WEB APP WITH FIREBASE
@@ -26,6 +30,10 @@ export default function Login() {
   // 1 set initial value if the form is of sign in
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
+
+  // use navigate
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // 2 Form Validation with useRef (Go to utils/validate.jsx)
   const name = useRef('');
@@ -57,14 +65,37 @@ export default function Login() {
       createUserWithEmailAndPassword(
         // 3.1.1 ei function ta basically USER er input kra auth, email id r password nibe
         auth,
+        // name.current.value,
         email.current.value,
         password.current.value,
       )
-      .then(userCredential => {
+      .then(() => {
         // Signed up 
-        const user = userCredential.user;
+        // const user = userCredential.user;
         // gonna provide me a user object
         // console.log(user);
+        // profile create howar pore, update krbo
+        // updateProfile(user, {
+        updateProfile(auth.currentUser, {
+          displayName: name.current.value,
+          photoURL: 'https://avatars.githubusercontent.com/u/36281118?v=4'
+        })
+        // successfulle signup & update hoile, following component a navigate kro
+        .then(() => {
+          /*
+          ---------------------------------------------------------------------
+          amr ekhn UPDATED value lagbe, displayName r photoURL kin2 amr "user" object a nai! karon, user sudhu email r password ta e pabe! tai amra eikhane "dispatch" krar smy "user" object theke extract korle luv nai! amdr extract krte hbe 'auth' object er 'currentUser' property theke
+          ---------------------------------------------------------------------
+          */
+          const { uid, email, displayName, photoURL } = auth.currentUser;
+          // That is, we're trying to fetch from the update value of the user
+          dispatch(
+            addUser({ uid, email, displayName, photoURL })
+          );
+          navigate('/browse');
+        }).catch(err => {
+          setErrorMessage(err.message)
+        });
       })
       .catch(error => {
         const errorCode = error.code;
@@ -73,6 +104,7 @@ export default function Login() {
       });
       // 1st account: risalshahed@gmail.com; password: a12345@
       // 2nd account: aa@bb.cc; password: 1234a@
+      // 3rd account: jannat@ferdous.com; password: risalshahe1!
     } else {
       // 3.2 sign in logic
       signInWithEmailAndPassword(
@@ -84,6 +116,8 @@ export default function Login() {
         // Signed in 
         const user = userCredential.user;
         console.log(user);
+        // successfulle login hoile, following component a navigate kro
+        navigate('/browse');
       })
       .catch(error => {
         const errorCode = error.code;
@@ -103,6 +137,7 @@ export default function Login() {
 
   return (
     <div>
+      <Header />
       {/* 1.1 background image */}
       <div>
         <img
@@ -166,7 +201,6 @@ export default function Login() {
           {isSignIn ? 'New to NetFlix? Register Here' : 'Already Have an account? Login Here'}
         </p>
       </form>
-
     </div>
   )
 }
