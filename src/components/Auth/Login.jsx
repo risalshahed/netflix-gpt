@@ -3,7 +3,6 @@ import background from '../../assets/background.jpg'
 import chackValidData from '../../utils/validate'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { auth } from '../../utils/firebase'
-import { useNavigate } from 'react-router-dom'
 import Header from '../Global/Header'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../../utils/userSlice'
@@ -31,8 +30,6 @@ export default function Login() {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
 
-  // use navigate
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // 2 Form Validation with useRef (Go to utils/validate.jsx)
@@ -70,12 +67,6 @@ export default function Login() {
         password.current.value,
       )
       .then(() => {
-        // Signed up 
-        // const user = userCredential.user;
-        // gonna provide me a user object
-        // console.log(user);
-        // profile create howar pore, update krbo
-        // updateProfile(user, {
         updateProfile(auth.currentUser, {
           displayName: name.current.value,
           photoURL: 'https://avatars.githubusercontent.com/u/36281118?v=4'
@@ -92,7 +83,8 @@ export default function Login() {
           dispatch(
             addUser({ uid, email, displayName, photoURL })
           );
-          navigate('/browse');
+          // 2.3 remove navigate from here in "Login" Component
+          // navigate('/browse');
         }).catch(err => {
           setErrorMessage(err.message)
         });
@@ -117,7 +109,8 @@ export default function Login() {
         const user = userCredential.user;
         console.log(user);
         // successfulle login hoile, following component a navigate kro
-        navigate('/browse');
+        // 2.3 remove navigate from here in "Login" Component
+        // navigate('/browse');
       })
       .catch(error => {
         const errorCode = error.code;
