@@ -6,6 +6,7 @@ import { auth } from '../../utils/firebase'
 import Header from '../Global/Header'
 import { useDispatch } from 'react-redux'
 import { addUser } from '../../utils/userSlice'
+import { USER_AVATAR } from '../../utils/constants'
 
 /* ------------------------------------------------------------
             DEPLOY WEB APP WITH FIREBASE
@@ -69,7 +70,7 @@ export default function Login() {
       .then(() => {
         updateProfile(auth.currentUser, {
           displayName: name.current.value,
-          photoURL: 'https://avatars.githubusercontent.com/u/36281118?v=4'
+          photoURL: USER_AVATAR
         })
         // successfulle signup & update hoile, following component a navigate kro
         .then(() => {
