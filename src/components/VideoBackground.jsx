@@ -14,12 +14,10 @@ export default function VideoBackground({ movieId }) {
     <div>
       {/* 4 */}
       <iframe
-        width="560"
-        height="315"
-        // // 5.3
-        // src={`https://www.youtube.com/embed/${trailerVideo?.key}?si=nGUKav_iQ2ZxU148`}
+        // hover over 'aspect-video', it will show the ratio (w:h -> 16:9)
+        className="w-full aspect-video"
         // 6.3
-        src={`https://www.youtube.com/embed/${trailerVideo?.key}?si=nGUKav_iQ2ZxU148`}
+        src={`https://www.youtube.com/embed/${trailerVideo?.key}?si=nGUKav_iQ2ZxU148&autoplay=1&mute=1`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
