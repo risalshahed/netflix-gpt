@@ -48,7 +48,7 @@ export default function Login() {
   const handleSubmit = e => {
     e.preventDefault();
     // useRef er through te input data OBJECT hishebe paay!
-    console.log(email?.current.value, password?.current.value);
+    // console.log(email?.current.value, password?.current.value);
     // validate the form data
     // chackValidData(email.current.value, password.current.value);
     const message = chackValidData(email?.current.value, password?.current.value);
@@ -108,7 +108,7 @@ export default function Login() {
       .then(userCredential => {
         // Signed in 
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         // successfulle login hoile, following component a navigate kro
         // 2.3 remove navigate from here in "Login" Component
         // navigate('/browse');
