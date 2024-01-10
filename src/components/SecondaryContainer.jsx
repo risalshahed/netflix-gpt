@@ -3,22 +3,10 @@ import MovieList from "./MovieList";
 import { useSelector } from 'react-redux'
 
 export default function SecondaryContainer() {
-  /* -----------------------------------------------------------------------
-                    Planning for Secondary Container
-  ----------------------------------------------------------------------- */
-  /* 
-      Movie List - Popular
-        Movie Card * n
-      Movie List - Trending
-      Movie List - Now Playing
-      Movie List - So on
-  */
   const movies = useSelector(store => store.movies);
 
   // **************** "early return" if falsy (here, null) ****************
   if(!movies) return;
-
-  // console.log(movies);
 
   return (
     <div className="bg-black text-white">

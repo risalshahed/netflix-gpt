@@ -4,7 +4,7 @@ export default function MovieList({ title, movies }) {
   // **************** "early return" if falsy (here, null) ****************
   if(!movies) return;
   
-  console.log(movies);
+  // console.log(movies);
   /*
     1 go to the TMDB API documentation -> Guides -> Image -> Basics
     After doing so, Go to the "constants.js" & create a constant
