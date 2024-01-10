@@ -5,7 +5,7 @@ import VideoBackground from './VideoBackground';
 export default function MainContainer() {
   const movies = useSelector(store => store.movies?.nowPlayingMovies);
   
-  // "early return" if falsy (here, null)
+  // **************** "early return" if falsy (here, null) ****************
   if(!movies) return;
 
   // get first movie initially

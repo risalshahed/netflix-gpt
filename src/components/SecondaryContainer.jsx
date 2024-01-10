@@ -1,7 +1,33 @@
+
+import MovieList from "./MovieList";
+import { useSelector } from 'react-redux'
+
 export default function SecondaryContainer() {
+  /* -----------------------------------------------------------------------
+                    Planning for Secondary Container
+  ----------------------------------------------------------------------- */
+  /* 
+      Movie List - Popular
+        Movie Card * n
+      Movie List - Trending
+      Movie List - Now Playing
+      Movie List - So on
+  */
+  const movies = useSelector(store => store.movies);
+
+  // **************** "early return" if falsy (here, null) ****************
+  if(!movies) return;
+
+  // console.log(movies);
+
   return (
-    <div>
-      <h2>Secondary</h2>
+    <div className="bg-black text-white">
+      <div className="-mt-64 relative z-20">
+        <MovieList title={'Now Playing'} movies={movies?.nowPlayingMovies} />
+        <MovieList title={'Top Rated'} movies={movies?.topRatedMovies} />
+        <MovieList title={'Popular'} movies={movies?.popularMovies} />
+        <MovieList title={'Upcoming'} movies={movies?.upcomingMovies} />
+      </div>
     </div>
   )
 }
