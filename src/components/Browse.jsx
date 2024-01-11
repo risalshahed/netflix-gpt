@@ -6,7 +6,7 @@ import GPTSearch from './GPTSearch';
 import Header from './Global/Header'
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 export default function Browse() {
   // 1 conditional rendering of Components (at first fetch gpt search data from store)
@@ -24,7 +24,7 @@ export default function Browse() {
       <SecondaryContainer />
     </>
 
-
+  // call the custom hooks
   useNowPlayingMovies();
   usePopularMovies();
   useTopRatedMovies();

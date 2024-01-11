@@ -7,11 +7,15 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react';
 import { addUser, removeUser } from '../../utils/userSlice';
 import { toggleGptSearchView } from '../../utils/gptSlice';
+import { SUPPORTED_LANGUAGES } from '../../utils/constants';
+import { changeLanguage } from '../../utils/configSlice';
 
 
 export default function Header() {
   const user = useSelector(store => store.user);
   // console.log(user);
+  const showGptSearch = useSelector(store => store.gpt.showGptSearch);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -23,46 +27,38 @@ export default function Header() {
       navigate('/error');
     });
   }
-
-  /* --------------------------------------------------------------------------
-  ------------------------ LOGIN/ LOGOUT STATE CHANGE ------------------------
-  -------------------------------------------------------------------------- */
-
-  // ***** 1 user login ba logout korle, "onAuthStateChanged" function fire hbe, that is, user login krleo eikhan theke kaj hbe (if (user)), abr logout krleo eikhan thekei kaj hbe (else)
-  // onAuthStateChanged -> ei component (jeikhane routing kra hoice) or App.jsx, anywhere ei function lekha jabe
-  // ***** 2.0 Another point to be noted, useEffect a onAuthStateChanged dewa hoice, with NO DEPENDENCY ARRAY, tar mane component er EACH RENDER a 1 bar kore "onAuthStateChanged" function fire hbe
   useEffect(() => {
-    // 2.4.1 "onAuthStateChanged" function actually 1ta 'unsubscribe' function RETURN kre, ekhn ei function er CALL k return krlei unsubscribe kra hbe i.e.e Component unmount i.e. "Header" Component UNLOAD er smy
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // 1.1 if User is signed in, see docs for a list of available properties
       if (user) {
-        // https://firebase.google.com/docs/reference/js/auth.user
         const { uid, email, displayName, photoURL } = user;
-        // dispatch the 'addUser' action & put the info of the user in the store
         dispatch(addUser({ uid, email, displayName, photoURL }));
-
-        // if user is logged in, always redirect him to 'browse' page
         navigate('/browse');
-        // 2.3, eikhane jodi amra navigate korei feli, tahole ki amdr r "Login" Component theke navigate krar dorkar ase??? NAAA, so let's remove the 'navigate' there
-        // ****** 2.1 BUT "navigate" will work only inside <RouterProvider router={appRouter} /> i.e. sudhu "Login" r "Browse" Component r tader children a kaj krbe 'navigate'; onno kothao like EIKHANE O NAAA *******
-        
-        // 1.2 if User is signed out
       } else {
         dispatch(removeUser())
-        // if user is NOT logged in, always redirect him to 'login' page
         navigate('/');
-        // 2.3 eikhane jodi amra navigate korei feli, tahole ki amdr r "Login" Component theke navigate krar dorkar ase??? NAAA, so let's remove the 'navigate' there
       }
     });
 
-    // ********** 2.4 unsubscribe when the Component UNMOUNTS (when "Header" Component UNLOADS) **********
     return () => unsubscribe();
   }, []);
-
 
   const handleGPTSearch = () => {
     // toggle
     dispatch(toggleGptSearchView());
+  }
+
+  // languages supported in our app
+  const languages = 
+    SUPPORTED_LANGUAGES.map(lang =>
+      <option key={lang.identifier} value={lang.identifier}>
+        {lang.name}
+      </option>  
+    )
+
+  // handle the language change
+  const handleLanguageChange = e => {
+    // console.log('toggle in header component:', e.target.value);
+    dispatch(changeLanguage(e.target.value));
   }
 
   return (
@@ -74,11 +70,20 @@ export default function Header() {
       />
       {user && (
         <div className='flex items-center gap-x-2'>
+          {/* multiple language options */}
+          {showGptSearch && (
+            <select
+              onChange={handleLanguageChange}
+              className='bg-gray-700 text-white outline-none cursor-pointer p-2 rounded-md'
+            >
+              {languages}
+            </select>
+          )}
           <button
             onClick={handleGPTSearch}
             className="px-4 py-2 mx-4 bg-blue-700 text-white rounded-md"
           >
-            GPT Search
+            {showGptSearch ? 'Home' : 'GPT Search'}
           </button>
           <img className='w-9 h-9 rounded-md' src={icon} alt="user-icon" />
           <button
