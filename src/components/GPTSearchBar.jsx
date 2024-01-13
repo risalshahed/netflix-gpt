@@ -25,7 +25,7 @@ export default function GPTSearchBar() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log(searchText.current.value);
+    // console.log(searchText.current.value);
 
     // gpt query to get movie name from 'searchText'
     const gptQuery = `Act as a Movie Recommendation System and suggest some movies for the query ${searchText.current.value}. Only give me 5 movie names comma separated e.g. "The Fight Club, The Prestige, Inception, Wonder, The Django Unchained"`
@@ -90,14 +90,17 @@ export default function GPTSearchBar() {
 
     // add gpt movie result
     dispatch(addGptMovieResult({ movieNames: gptMovies, movieResult: finalResult }));
+
+    // clear input field
+    searchText.current.value = '';
   }
 
   return (
-    <div className="pt-24">
+    <div className="pt-[40%] sm:pt-[30%] md:pt-24 px-2 sm:px-6">
       <form
         // handle movie search
         onSubmit={handleSubmit}
-        className="bg-gradient-to-tr from-slate-600 to-black w-1/2 mx-auto flex gap-x-4 justify-center items-center"
+        className="bg-gradient-to-tr from-slate-600 to-black opacity-95 w-full md:w-1/2 mx-auto flex gap-x-4 justify-center items-center"
       >
         {/* *************** "lang" object er mddhe properties ase 'en', 'bn' & 'arb', so, lang.langKey dle ERROR dekhabe! we must access the dynamic property in lang[langKey] way */}
         <input

@@ -17,7 +17,7 @@ export default function MovieList({ title, movies }) {
 
   return (
     <div className="px-14 py-6">
-      <h2 className="text-center text-3xl font-bold py-4">{title}</h2>
+      <h2 className="text-center text-xl md:text-3xl font-bold py-4">{title}</h2>
       <div className="flex overflow-x-scroll">
         <div className="flex gap-x-4">
           {movieCard}

@@ -4,7 +4,7 @@ export default function MovieCard({ path }) {
   if(!path) return null;
 
   return (
-    <div className='w-48'>
+    <div className='w-36 md:w-48'>
       <img src={`${IMG_CDN_URL}/${path}`} alt="" />
     </div>
   )

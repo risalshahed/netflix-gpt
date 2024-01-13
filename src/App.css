@@ -6,7 +6,7 @@
 /* Global Styles */
 html, body {
   margin: 0;
-  max-width: 100%;
-  overflow-x: hidden;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
   cursor: pointer;
 }

@@ -38,6 +38,14 @@
 - Multi Language Feature in our App
 - Integrate GPT APIs
 - npm i openai
+- Get Open AI API Key
+- GPT Search API Call
+- Fetched GPT Movie Suggestions from TMDB
+- Create GPT Slice Added Data
+- Reuse Movie List Component
+- Memoization
+- Key made secured
+- Responsveness
 
 
 ## Features

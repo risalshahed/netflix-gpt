@@ -62,7 +62,7 @@ export default function Header() {
   }
 
   return (
-    <nav className='absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between p-2'>
+    <nav className='absolute w-full px-8 py-2 bg-gradient-to-tr from-black to-slate-500 opacity-95 z-10 flex flex-col md:flex-row justify-between items-center p-2'>
       <img
         className='w-44'
         src={logo}

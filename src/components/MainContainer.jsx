@@ -16,7 +16,7 @@ export default function MainContainer() {
   const { id, original_title, overview } = mainMovie;
 
   return (
-    <div>
+    <div className='pt-[30%] md:pt-0'>
       <VideoTitlte title={original_title} overview={overview} />
       <VideoBackground movieId={id} />
     </div>

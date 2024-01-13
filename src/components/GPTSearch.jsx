@@ -6,10 +6,12 @@ export default function GPTSearch() {
   return (
     <div>
       <div>
-        <img className="fixed -z-10" src={background} alt="Background" />
+        <img className="fixed -z-10 min-h-screen object-cover" src={background} alt="Background" />
       </div>
-      <GPTSearchBar />
-      <GPTMovieSuggestions />
+      <div>
+        <GPTSearchBar />
+        <GPTMovieSuggestions />
+      </div>
     </div>
   )
 }

@@ -133,9 +133,9 @@ export default function Login() {
     <div>
       <Header />
       {/* 1.1 background image */}
-      <div>
+      <div className='fixed'>
         <img
-          className='absolute'
+          className='min-h-screen object-cover'
           src={background}
           alt="background"
         />
@@ -143,7 +143,7 @@ export default function Login() {
       {/* ****** In case of position: absolute, mx-auto WON'T WORK UNLESS right: 0 & left: 0 are provided */}
       <form
         onSubmit={handleSubmit}
-        className='absolute left-0 right-0 bg-black w-1/3 mx-auto my-32 p-12 text-white rounded-lg bg-opacity-75'
+        className='absolute left-0 right-0 bg-black w-full sm:w-3/4 md:w-1/2 lg:w-1/3 mx-auto my-32 p-12 text-white rounded-lg bg-opacity-75'
       >
         {/* 1.2 Conditional Sign In/Up field */}
         <h1 className='font-bold text-3xl px-10 py-4'>
@@ -158,7 +158,7 @@ export default function Login() {
               ref={name}
               type="text"
               placeholder='Enter your name'
-              className='p-2 my-5 w-3/4 block mx-auto bg-gray-700' />
+              className='p-2 my-5 w-full lg:w-5/6 block mx-auto bg-gray-700' />
           </div>
         }
         {/* 1.3 Email Field (for both sign in & sign up) */}
@@ -167,7 +167,7 @@ export default function Login() {
             ref={email}
             type="email"
             placeholder='Enter your email'
-            className='p-2 my-5 w-3/4 block mx-auto bg-gray-700'
+            className='p-2 my-5 w-full lg:w-5/6 block mx-auto bg-gray-700'
           />
         </div>
         {/* 1.4 Password Field for sign in & sign up */}
@@ -176,12 +176,12 @@ export default function Login() {
             ref={password}
             type="password"
             placeholder={isSignIn ? `Enter Password to login ` : `Create New Password`}
-            className='p-2 my-5 w-3/4 block mx-auto bg-gray-700'
+            className='p-2 my-5 w-full lg:w-5/6 block mx-auto bg-gray-700'
           />
         </div>
         {/* 1.5 Submit button (sign up & sign in both) */}
         <div>
-          <button className='bg-red-700 ml-10 my-4 py-3 rounded-lg w-3/4'>
+          <button className='bg-red-700 block mx-auto my-4 py-3 rounded-lg w-3/5'>
             Sign {isSignIn ? 'In' : 'Up'}
           </button>
         </div>
