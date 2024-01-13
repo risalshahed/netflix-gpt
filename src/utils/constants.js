@@ -4,7 +4,7 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZGZmODlmOWQ1ZDdhYWQ3YjBiY2ViOWEzYzI2NzM5MSIsInN1YiI6IjY1OWM1Y2QxMGQxMWYyMjJkYzc0YzEzNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m68FIOLqOOkmcLVqPJK37H3E1YkNIY35-KspkNeKaeQ'
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_KEY}`
   }
 };
 
@@ -20,4 +20,4 @@ export const SUPPORTED_LANGUAGES = [
 // export const OPENAI_KEY = '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'
 
 // it's from the open ai of risal0167@gmail.com
-export const OPENAI_KEY = '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'
+export const OPENAI_KEY = import.meta.env.VITE_OPENAI_KEY

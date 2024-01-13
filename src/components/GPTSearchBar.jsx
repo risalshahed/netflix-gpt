@@ -1,13 +1,16 @@
 import { useRef } from "react";
 import lang from "../utils/languageConstants";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import openai from '../utils/openai';
 import { API_OPTIONS } from "../utils/constants";
+import { addGptMovieResult } from "../utils/gptSlice";
 
 export default function GPTSearchBar() {
   // store.slice_name.state_property
   const langKey = useSelector(store => store.config.lang);
   // console.log(langKey);
+  const dispatch = useDispatch();
+
   const searchText = useRef(null);
 
   // 3 search movie in TMDB
@@ -41,9 +44,11 @@ export default function GPTSearchBar() {
 
     // console the result
     // console.log(gptResults.choices[0]?.message?.content);
-    let gptMovies = gptResults.choices[0]?.message?.content;
+    /* let gptMovies = gptResults.choices[0]?.message?.content;
     // 2 convert to Array
-    gptMovies = gptMovies.split(',');
+    gptMovies = gptMovies.split(','); */
+    // 2 convert to Array
+    const gptMovies = gptResults.choices[0]?.message?.content.split(',');
     // 4 for each movie I will search TMDB API (prottek ta 'movie' er jnnoi amra "searchMovieTMDB" function CALL krbo)
     // const fetchedMovie = gptMovies.map(movie => searchMovieTMDB(movie))
     // ************* eikhane ashole ki hosse? prottek "movie" er jonno 'searchMovieTMDB' function CALL hosse 5 bar kore!
@@ -80,6 +85,11 @@ export default function GPTSearchBar() {
     // await kn??? karon ekek ta promise bivinno smy nibe resolve hoite, to shob Promise solve howa prjnto wait kore amra final result ber korbo, ei karonei await dc
     console.log(finalResult);
     // ---------------------------- End of Promise ----------------------------
+
+    // NOW, let's push this final result to our store in order to display this result in UI
+
+    // add gpt movie result
+    dispatch(addGptMovieResult({ movieNames: gptMovies, movieResult: finalResult }));
   }
 
   return (
