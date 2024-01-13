@@ -33,6 +33,11 @@
 - Popular
 - Top Rated
 - Upcoming
+- GPT Search Page
+- GPT Search Bar
+- Multi Language Feature in our App
+- Integrate GPT APIs
+- npm i openai
 
 
 ## Features
