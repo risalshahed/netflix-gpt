@@ -12,16 +12,16 @@ export default function MovieList({ title, movies }) {
 
   // 2 insert poster form all of the movies
   const movieCard = movies.map(movie =>
-    <MovieCard key={movie.id} path={movie.poster_path} />
+    <MovieCard key={movie.id} movie={movie} />
   );
 
   return (
     <div className="px-14 py-6">
-      <h2 className="text-center text-xl md:text-3xl font-bold py-4">{title}</h2>
-      <div className="flex overflow-x-scroll">
-        <div className="flex gap-x-4">
-          {movieCard}
-        </div>
+      <h2 className="text-center text-xl md:text-3xl font-bold py-4">
+        {title}
+      </h2>
+      <div className="flex flex-wrap gap-4 justify-center py-5">
+        {movieCard}
       </div>
     </div>
   )

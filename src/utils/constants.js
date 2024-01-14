@@ -16,8 +16,5 @@ export const SUPPORTED_LANGUAGES = [
   { identifier: 'arb', name: 'Arabic' },
 ]
 
-// ********** OPEN AI KEY is not always free, it might be free for maximum of 3 months! After that, it'll be PAID! so, keep this key SECRET so others can't use this key utilizing YOUR MONEY!
-// export const OPENAI_KEY = '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'
-
-// it's from the open ai of risal0167@gmail.com
+// ********** OPEN AI KEY is not always free
 export const OPENAI_KEY = import.meta.env.VITE_OPENAI_KEY

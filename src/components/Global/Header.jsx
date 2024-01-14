@@ -27,6 +27,7 @@ export default function Header() {
       navigate('/error');
     });
   }
+  
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -62,9 +63,9 @@ export default function Header() {
   }
 
   return (
-    <nav className='absolute w-full px-8 py-2 bg-gradient-to-tr from-black to-slate-500 opacity-95 z-10 flex flex-col md:flex-row justify-between items-center p-2'>
+    <nav className='fixed w-full px-8 py-2 bg-gradient-to-tr from-black to-slate-500 opacity-95 z-30 flex flex-col md:flex-row justify-between items-center p-2'>
       <img
-        className='w-44'
+        className='w-32 md:w-44'
         src={logo}
         alt="Logo"
       />
@@ -81,11 +82,11 @@ export default function Header() {
           )}
           <button
             onClick={handleGPTSearch}
-            className="px-4 py-2 mx-4 bg-blue-700 text-white rounded-md"
+            className="px-2 sm:px-4 py-1 sm:py-2 mx-4 bg-blue-700 text-white rounded-md"
           >
             {showGptSearch ? 'Home' : 'GPT Search'}
           </button>
-          <img className='w-9 h-9 rounded-md' src={icon} alt="user-icon" />
+          <img className='hidden md:block w-9 h-9 rounded-md' src={icon} alt="user-icon" />
           <button
             onClick={handleSignOut}
             className='font-semibold text-white px-2 py-1 rounded-md bg-blue-700'

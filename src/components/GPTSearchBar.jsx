@@ -83,7 +83,7 @@ export default function GPTSearchBar() {
     // To get Actual DATA, I have to return the result from ALL Promises! With the help of a function "Promise.all()"
     const finalResult = await Promise.all(promiseArray);
     // await kn??? karon ekek ta promise bivinno smy nibe resolve hoite, to shob Promise solve howa prjnto wait kore amra final result ber korbo, ei karonei await dc
-    console.log(finalResult);
+    // console.log(finalResult);
     // ---------------------------- End of Promise ----------------------------
 
     // NOW, let's push this final result to our store in order to display this result in UI
